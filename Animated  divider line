@@ -1,0 +1,51 @@
+<style>
+    
+   /* Small Animated Divider */
+.small-animated-divider {
+    position: relative;
+    width: 100%; /* Full width of the container */
+    height: 1px;
+    background: transparent;
+    margin: 12px auto;
+    display: block;
+    overflow: hidden;
+}
+
+/* Animated line with gradient and glow */
+.small-animated-divider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #FF0000, #FFFFFF, #FF0000); /* Red to white to red gradient */
+    background-size: 200% 100%; /* For gradient animation */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 0, 0, 0.3); /* Glow effect */
+    animation: animateCoolDivider 10.5s infinite ease-in-out !important;
+}
+
+/* Keyframes for the cooler animation */
+@keyframes animateCoolDivider {
+    0% {
+        width: 0;
+        background-position: 0 0; /* Start gradient position */
+        transform: scaleY(1); /* Normal height */
+    }
+    45% {
+        width: 100%;
+        background-position: 200% 0; /* Shift gradient for color change */
+        transform: scaleY(1.5); /* Slightly increase height for pulse effect */
+    }
+    55% {
+        width: 100%;
+        background-position: 200% 0;
+        transform: scaleY(1.5);
+    }
+    100% {
+        width: 0;
+        background-position: 0 0;
+        transform: scaleY(1);
+    }
+}
+</style>
