@@ -1,0 +1,21 @@
+<style>
+/* Hide horizontal overflow for the entire page */
+html, body {
+   overflow-x: hidden;
+}
+
+.anim-rotate {
+    animation: anim-rotate 4s infinite linear;
+}
+
+@keyframes anim-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+</style>
