@@ -1,3 +1,5 @@
+<style>
+
 /* Custom Cursor Styles */
 .cursor-dot {
     width: 8px; /* Size of the inner dot */
