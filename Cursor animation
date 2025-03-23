@@ -1,0 +1,115 @@
+/* Custom Cursor Styles */
+.cursor-dot {
+    width: 8px; /* Size of the inner dot */
+    height: 8px;
+    background-color: #FFFFFF; /* White dot */
+    border-radius: 50%; /* Circular shape */
+    position: fixed; /* Position relative to the viewport */
+    pointer-events: none; /* Prevents cursor from interfering with clicks */
+    z-index: 9999; /* Ensure it’s above other elements */
+    transform: translate(-50%, -50%); /* Center the dot on the cursor */
+}
+
+/* Custom Cursor Styles */
+.cursor-dot {
+    width: 8px; /* Size of the inner dot */
+    height: 8px;
+    background-color: #FFFFFF; /* White dot */
+    border-radius: 50%; /* Circular shape */
+    position: fixed; /* Position relative to the viewport */
+    pointer-events: none; /* Prevents cursor from interfering with clicks */
+    z-index: 9999; /* Ensure it’s above other elements */
+    transform: translate(-50%, -50%); /* Center the dot on the cursor */
+}
+
+.cursor-circle {
+    width: 40px; /* Size of the outer circle */
+    height: 40px;
+    border: 1px solid #FFFFFF; /* White border */
+    border-radius: 50%; /* Circular shape */
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998; /* Below the dot but above other elements */
+    transform: translate(-50%, -50%); /* Center the circle on the cursor */
+}
+
+
+@media (max-width: 767px) {
+    .cursor-dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .cursor-circle {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+a:hover ~ .cursor-circle,
+button:hover ~ .cursor-circle {
+    transform: translate(-50%, -50%) scale(1.5); /* Enlarge on hover */
+    border-color: #FF0000; /* Change color on hover */
+}
+
+
+</style>
+
+
+<script>
+    
+   document.addEventListener('DOMContentLoaded', function () {
+    // Create the cursor elements
+    const cursorDot = document.createElement('div');
+    cursorDot.className = 'cursor-dot';
+    document.body.appendChild(cursorDot);
+
+    const cursorCircle = document.createElement('div');
+    cursorCircle.className = 'cursor-circle';
+    document.body.appendChild(cursorCircle);
+
+    // Current position of the cursor
+    let mouseX = 0;
+    let mouseY = 0;
+
+    // Current position of the circle (for smooth trailing)
+    let circleX = 0;
+    let circleY = 0;
+
+    // Speed factor (1/2 speed)
+    const speed = 0.08; // 1 - 0.5 = 0.5 for lerp
+
+    // Update cursor position on mouse move
+    document.addEventListener('mousemove', function (e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        // Update the dot position immediately
+        cursorDot.style.left = `${mouseX}px`;
+        cursorDot.style.top = `${mouseY}px`;
+    });
+
+    // Smoothly animate the circle using requestAnimationFrame
+    function animateCircle() {
+        // Linear interpolation (lerp) to move the circle at 3/4 speed
+        circleX += (mouseX - circleX) * speed;
+        circleY += (mouseY - circleY) * speed;
+
+        // Update the circle position
+        cursorCircle.style.left = `${circleX}px`;
+        cursorCircle.style.top = `${circleY}px`;
+
+        // Continue the animation
+        requestAnimationFrame(animateCircle);
+    }
+
+    // Start the animation loop
+    animateCircle();
+});
+
+if ('ontouchstart' in window) {
+    cursorDot.style.display = 'none';
+    cursorCircle.style.display = 'none';
+    document.body.style.cursor = 'auto';
+}
+</script>
