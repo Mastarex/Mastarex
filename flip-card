@@ -1,0 +1,91 @@
+/* Default state of the card */
+.flip-card {
+  opacity: 1; /* Always visible by default */
+  transform: translateY(0); /* No initial offset */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  perspective: 1000px;
+  height: 400px;
+  position: relative;
+}
+
+/* Remove .visible class since no JS */
+.flip-card.visible {
+  /* No longer needed, but kept for compatibility if JS is re-added */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Flip functionality */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #1a1a1a;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front .elementor-icon i {
+  font-size: 40px;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.flip-card-back .elementor-heading-title {
+  font-size: 24px !important;
+  margin-bottom: 10px !important;
+}
+
+.flip-card-back .elementor-text-editor p {
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+}
+
+.flip-card-back .back-button i {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Ensure columns are positioned correctly */
+.flip-card-inner > .elementor-column {
+  position: absolute !important;
+  width: 100% !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .flip-card {
+    height: 300px; /* Adjust height for mobile */
+    width: 100%; /* Full width on mobile */
+    opacity: 1; /* Explicitly ensure visibility */
+    transform: translateY(0); /* Ensure no offset */
+  }
+}
+
+
